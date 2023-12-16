@@ -9,7 +9,7 @@ class Node
 
   # Also, there are two attributes common to all linked lists: they start with a
   # HEAD node and end with a TAIL node and nil output
-  def initialize(data)
+  def initialize(data = nil)
     @data = data
     @next = nil
   end
@@ -36,6 +36,8 @@ class LinkedList
     @head, @tail = value if @head.nil?
     @tail = value
   end
+
+  def prepend(value)
 
   end
 
