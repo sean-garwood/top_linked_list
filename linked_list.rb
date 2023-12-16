@@ -2,13 +2,9 @@
 
 # nodes in the linked list object
 class Node
+  include Enumerable
   attr_accessor :next, :data
 
-  # Each node consists of exactly two elements: data, and 'next', which is a
-  # link to the next node in the list.
-
-  # Also, there are two attributes common to all linked lists: they start with a
-  # HEAD node and end with a TAIL node and nil output
   def initialize(data = nil)
     @data = data
     @next = nil
@@ -33,12 +29,13 @@ class LinkedList
   end
 
   def append(value)
-    @head, @tail = value if @head.nil?
+    @head = value if @head.nil?
     @tail = value
   end
 
   def prepend(value)
-
+    @tail = value if @head.nil?
+    @head = value
   end
 
   def size
