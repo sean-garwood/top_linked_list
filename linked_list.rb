@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
+require 'pry-byebug'
 # nodes in the linked list object
 class Node
   attr_accessor :next, :data
 
-  def initialize(data = nil)
+  def initialize(data = nil, next = nil)
     @data = data
     @next = nil
   end
@@ -20,43 +21,38 @@ end
 
 # Ruby impl of a linked list.
 class LinkedList
-  include Enumerable
   attr_accessor :head, :tail
 
   def initialize
     @head = nil
     @tail = nil
-  end
-
-  def each
-    for node in self
-      yield node
-    end
-    self
+    @nodes = []
   end
 
   def append(value)
-    @head = value if @head.nil?
+    size.zero? && @head = value
     @tail = value
+    @nodes << value
   end
 
   def prepend(value)
-    @tail = value if @head.nil?
+    size.zero? && @tail = value
     @head = value
+    @nodes << value
   end
 
   def size
-    self.count
+    @nodes.count
   end
 
   # #head and #tail methods covered by attr_accessor
 
   def at(index)
-    self[index]
+    @nodes[index]
   end
 
   def pop
-    # something
+    self
   end
 
   def find(value)
@@ -84,3 +80,7 @@ extracredit
   end
 
 =end
+
+foo = LinkedList.new
+binding.pry
+exit
