@@ -25,6 +25,7 @@ end
 
 # Ruby impl of a linked list.
 class LinkedList
+  include Enumerable
   # A linked list consists of three sections: the head, an arbitrary number of
   # nodes from zero to memory bound, and tail.
 
