@@ -6,6 +6,9 @@ class Node
 
   # Each node consists of exactly two elements: data, and 'next', which is a
   # link to the next node in the list.
+
+  # Also, there are two attributes common to all linked lists: they start with a
+  # HEAD node and end with a TAIL node and nil output
   def initialize(data)
     @data = data
     @next = nil
@@ -22,7 +25,6 @@ end
 
 # Ruby impl of a linked list.
 class LinkedList
-
   # A linked list consists of three sections: the head, an arbitrary number of
   # nodes from zero to memory bound, and tail.
 
@@ -51,4 +53,49 @@ class LinkedList
     @head.nil? && @head = value || @tail.next = value
     @tail = value
   end
+
+  def size
+    # something
+  end
+
+  def head
+    # something
+  end
+
+  def tail
+    # something
+  end
+
+  def at(index)
+    # something
+  end
+
+  def pop
+    # something
+  end
+
+  def contains?(value)
+    # something
+  end
+
+  def find(value)
+    # something
+  end
 end
+
+  # def to_s
+    # something
+  # end
+
+=begin
+extracredit
+
+  def insert_at(value, index)
+    # something
+  end
+
+  def remove_at(index)
+    # something
+  end
+
+=end
