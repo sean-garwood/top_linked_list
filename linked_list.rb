@@ -2,7 +2,6 @@
 
 # nodes in the linked list object
 class Node
-  include Enumerable
   attr_accessor :next, :data
 
   def initialize(data = nil)
@@ -21,11 +20,19 @@ end
 
 # Ruby impl of a linked list.
 class LinkedList
+  include Enumerable
   attr_accessor :head, :tail
 
   def initialize
     @head = nil
     @tail = nil
+  end
+
+  def each
+    for node in self
+      yield node
+    end
+    self
   end
 
   def append(value)
@@ -39,13 +46,13 @@ class LinkedList
   end
 
   def size
-    # something
+    self.count
   end
 
   # #head and #tail methods covered by attr_accessor
 
   def at(index)
-    # something
+    self[index]
   end
 
   def pop
