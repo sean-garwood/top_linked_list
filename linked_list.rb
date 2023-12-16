@@ -33,6 +33,7 @@ class LinkedList
   # the head is the first element in the list
 
   # the tail is the last element in the list
+  attr_accessor :head, :tail
 
   def initialize
     @head = nil
@@ -58,13 +59,7 @@ class LinkedList
     # something
   end
 
-  def head
-    # something
-  end
-
-  def tail
-    # something
-  end
+  # #head and #tail methods covered by attr_accessor
 
   def at(index)
     # something
