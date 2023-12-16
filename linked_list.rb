@@ -25,15 +25,6 @@ end
 
 # Ruby impl of a linked list.
 class LinkedList
-  include Enumerable
-  # A linked list consists of three sections: the head, an arbitrary number of
-  # nodes from zero to memory bound, and tail.
-
-  # Every list has to have a head and a tail, but not every list needs nodes.
-
-  # the head is the first element in the list
-
-  # the tail is the last element in the list
   attr_accessor :head, :tail
 
   def initialize
@@ -42,18 +33,10 @@ class LinkedList
   end
 
   def append(value)
-    if @head.nil?
-      @head = value
-      @tail = value
-    else
-      value.next = @head
-      @head = value
-    end
+    @head, @tail = value if @head.nil?
+    @tail = value
   end
 
-  def prepend(value)
-    @head.nil? && @head = value || @tail.next = value
-    @tail = value
   end
 
   def size
@@ -70,11 +53,11 @@ class LinkedList
     # something
   end
 
-  def contains?(value)
+  def find(value)
     # something
   end
 
-  def find(value)
+  def contains?(value)
     # something
   end
 end
