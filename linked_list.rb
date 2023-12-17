@@ -16,14 +16,25 @@ end
 class LinkedList
   attr_accessor :head, :tail
 
+  TYPE_OF_TRANSFORMATION = {
+    append: 0,
+    prepend: 1,
+    pop: 2,
+    insert_at: 3,
+    remove_at: 4
+  }
+
   def initialize
     @head = nil
     @tail = nil
     @nodes = []
   end
 
+  def transform(value, type)
+
+
   def append(value)
-    size.zero? && @head = value
+    size.zero? && @head = make_node.call(value)
     @tail = value
     value.next_node = nil
     @nodes << value
