@@ -53,7 +53,7 @@ class LinkedList
   end
 
   def find(value)
-    @nodes.index_at(value)
+    @nodes.select { |node| node.value == value }
   end
 
   def contains?(value)
