@@ -4,26 +4,19 @@ require_relative 'node'
 
 # Ruby impl of a linked list.
 class LinkedList
-attr_accessor :head, :tail, :nodes
-
-TRANSFORMATIONS = [[:pop, :remove_at], [:append, :prepend, :insert_at]]
-ADD_NODE = TRANSFORMATIONS[1]
-REMOVE_NODE = TRANSFORMATIONS[0]
+attr_accessor :head, :tail, :size
 
   def initialize
     @head = nil
     @tail = nil
-    @number_of_nodes = 0
-  end
-
-  def size
-    @number_of_nodes
+    @size = 0
   end
 
   def append(value)
     node = Node.new(value)
-    size.zero? && @head = node || @tail.next_node = node
+    @size.zero? && @head = node || @tail.next_node = node
     @tail = node
+    @size += 1
     self
   end
 
@@ -31,18 +24,32 @@ REMOVE_NODE = TRANSFORMATIONS[0]
     node = Node.new(value)
     node.next_node = @head unless @head.nil?
     @head = node
+    @size += 1
     self
   end
 
+  def at(index)
+    # index is the depth of the search for the node to return.
+    # start with the @head and store it into `current_node`
+    current_node = @head
+    index.times { current_node = current_node.next_node }
+    current_node
+  end
+
   def pop
-    # some code
-  end
+    return if @size.zero?
 
-  def append(value)
-    # add node to end of list
-  end
-
-  def prepend(value)
-  # add node to beginning of list
+    if @size == 1
+      @head = nil
+      @tail = nil
+    elsif size == 2
+      @head.next_node = nil
+      @tail = nil
+    else # if size is greater than two
+      # set the @tail to be the second-to-last node
+      @tail = at(size - 2)
+      @tail.next_node = nil
+    end
+    @size -= 1
   end
 end
