@@ -49,37 +49,25 @@ class LinkedList
 
   def pop
     @nodes[-2].next_node = nil
-    self.remove_at[-1]
+    @nodes.remove_at[-1]
   end
 
   def find(value)
-    # something
+    @nodes.index_at(value)
   end
 
   def contains?(value)
-    # something
+    @nodes.include?(value)
+  end
+
+  def to_s
+    if size.zero?
+      return nil
+    elsif @nodes.count == 1
+      return "( #{@nodes[0].value} )"
+    else
+      @nodes.each { |node| "( #{node.value} ) -> " unless i + 1 == size }
+    end
+    " #{@tail.value}"
   end
 end
-
-  # def to_s
-    # something
-  # end
-
-=begin
-extracredit
-
-  def insert_at(value, index)
-    # something
-  end
-
-  def remove_at(index)
-    # something
-  end
-
-=end
-
-def build_list
-
-  puts 'enter some data for the node' = LinkedList.new
-  binding.pry
-  exit
