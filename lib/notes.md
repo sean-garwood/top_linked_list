@@ -42,6 +42,8 @@ when ll has two or more nodes: @head is the first node, @tail is last
 newly added/deleted node.
 2. modify the @next_node attrib of the node that is being
 added to the ll.
+3. find
+3. modify @head and @tail
 
 
 make node(value)

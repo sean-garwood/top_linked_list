@@ -14,10 +14,15 @@ class LinkedList
 
   def append(value)
     node = Node.new(value)
-    @size.zero? && @head = node || @tail.next_node = node
-    @tail = node
+    if @size.zero?
+      @head = node
+    elsif @size == 1
+      @head.next_node = node
+    else
+      @tail.next_node = node
+    end
     @size += 1
-    self
+    @tail = node
   end
 
   def prepend(value)
@@ -25,7 +30,7 @@ class LinkedList
     node.next_node = @head unless @head.nil?
     @head = node
     @size += 1
-    self
+    size == 1 & @tail = @head
   end
 
   def at(index)
@@ -70,13 +75,18 @@ class LinkedList
 
   def find(value)
     nodes = collect_nodes
-    nodes.select { |node| node.value == value }
+    results = nodes.select { |node| node.value == value }
+    results.empty? && nil || results.length == 1 && results[0] || results
   end
 
   def to_s
-    nodes = collect_nodes
-    nodes.each do |node|
-      "( #{node.value} ) -> " unless node == @tail
+    linked_node = proc { |value| "( #{value} ) -> "}
+    current_node = @head
+    return '' if current_node.nil?
+
+    while current_node != @tail
+      linked_node.call(current_node.value)
+      current_node = current_node.next_node
     end
     " ( #{@tail.value} )"
   end
