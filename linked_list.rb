@@ -30,7 +30,6 @@ class LinkedList
   end
 
   def prepend(value)
-    @value = Node.new(value, @nodes[0])
     size.zero? && @tail = value
     @head = value
     value.next_node = @nodes[0]
@@ -49,7 +48,7 @@ class LinkedList
 
   def pop
     @nodes[-2].next_node = nil
-    @nodes.remove_at[-1]
+    @nodes.shift
   end
 
   def find(value)
@@ -63,11 +62,12 @@ class LinkedList
   def to_s
     if size.zero?
       return nil
-    elsif @nodes.count == 1
+    elsif size == 1
       return "( #{@nodes[0].value} )"
     else
-      @nodes.each { |node| "( #{node.value} ) -> " unless i + 1 == size }
+      @nodes.each { |node| "( #{node.value} ) -> " unless node == @tail }
     end
+
     " #{@tail.value}"
   end
 end
