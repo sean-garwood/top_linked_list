@@ -12,7 +12,7 @@ module Transformations
     node = make_node(node, 1)
     size.zero? && @tail = node
     @head = node
-    @nodes.unshift(value)
+    @nodes.unshift(node)
   end
 
   # def insert_at(value, index)
@@ -28,3 +28,5 @@ module Transformations
   # def remove_at(index)
     # extra credit
   # end
+
+end

@@ -2,27 +2,32 @@
 
 # Ruby impl of a linked list.
 class LinkedList
+  include Transformations
+  include MakeNode
+  include EraseNode
+
   attr_accessor :head, :tail
 
   def initialize
     @head = nil
     @tail = nil
-    @nodes = []
   end
 
   def size
-    @nodes.count
+    # no cheating by using @nodes!
   end
 
   def at(index)
-    @nodes[index]
+    # no cheating by using @nodes!
   end
 
   def find(value)
+    # no cheating by using @nodes!
     @nodes.select { |node| node.value == value }
   end
 
   def contains?(value)
+    # no cheating by using @nodes!
     @nodes.include?(value)
   end
 
