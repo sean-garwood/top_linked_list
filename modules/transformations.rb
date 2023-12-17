@@ -4,15 +4,12 @@ module Transformations
     node = make_node(value, 0)
     size.zero? && @head = node
     @tail = node
-    node.next_node = nil
-    @nodes << node
   end
 
   def prepend(node)
     node = make_node(node, 1)
     size.zero? && @tail = node
     @head = node
-    @nodes.unshift(node)
   end
 
   # def insert_at(value, index)
@@ -21,8 +18,7 @@ module Transformations
 
   # remove nodes
   def pop
-    @nodes[-2].next_node = nil
-    @nodes.shift
+    self.remove(@tail)
   end
 
   # def remove_at(index)
