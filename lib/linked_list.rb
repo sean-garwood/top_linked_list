@@ -4,7 +4,7 @@ require_relative 'node'
 
 # Ruby impl of a linked list.
 class LinkedList
-attr_accessor :head, :tail, :size
+  attr_accessor :head, :tail, :size
 
   def initialize
     @head = nil
@@ -51,5 +51,25 @@ attr_accessor :head, :tail, :size
       @tail.next_node = nil
     end
     @size -= 1
+  end
+
+  def collect_nodes
+    nodes = []
+    current_node = @head
+    until current_node.nil?
+      nodes << current_node
+      current_node = current_node.next_node
+    end
+    nodes
+  end
+
+  def contains?(value)
+    nodes = collect_nodes
+    nodes.any? { |node| node.value == value }
+  end
+
+  def find(value)
+    nodes = collect_nodes
+    nodes.select { |node| match?.call(value) }
   end
 end
