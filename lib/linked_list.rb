@@ -13,56 +13,36 @@ REMOVE_NODE = TRANSFORMATIONS[0]
   def initialize
     @head = nil
     @tail = nil
-    @nodes = 0
+    @number_of_nodes = 0
   end
 
   def size
-    nodes
+    @number_of_nodes
   end
 
-  def transformation(type, &subtype)
-    type.zero? ? @nodes -= 1 : @nodes += 1
-    yield(subtype) # this will yield control to the block passed as subtype,
-    # which is going to be a specific transformation function
+  def append(value)
+    node = Node.new(value)
+    size.zero? && @head = node || @tail.next_node = node
+    @tail = node
+    self
   end
 
-  def find_node_before(node)
-    size.zero? || node == @head && nil
-    # find the neighbors of a given node.
-    # search for the node that has node.next_node = node
-    self.select { |n| n.next_node == node }
+  def prepend(value)
+    node = Node.new(value)
+    node.next_node = @head unless @head.nil?
+    @head = node
+    self
   end
-
-  def find_node_after(node)
-    return nil if @tail.nil? || @head.nil?
-
-  end
-
-
-
-  def make_node(value, transformation)
-    t = add_to_list_operation.call(transformation)
-    next_node = find_next_node(transformation)
-    Node.new(value, next_node)
-  end
-
 
   def pop
     # some code
   end
 
-  # add node to end of list
   def append(value)
-    @tail.next_node =
+    # add node to end of list
   end
 
-  # add node to beginning of list
   def prepend(value)
-    @nodes.zero?
+  # add node to beginning of list
   end
-
-
-
-add_to_list_operation = proc { |subtype| ADD_NODE[subtype] }
-remove_from_list_operation = proc { |subtype| REMOVE_NODE[subtype] }
-find_next_node = proc { |transformation| }
+end
