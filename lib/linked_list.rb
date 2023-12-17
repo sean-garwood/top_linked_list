@@ -70,6 +70,14 @@ class LinkedList
 
   def find(value)
     nodes = collect_nodes
-    nodes.select { |node| match?.call(value) }
+    nodes.select { |node| node.value == value }
+  end
+
+  def to_s
+    nodes = collect_nodes
+    nodes.each do |node|
+      "( #{node.value} ) -> " unless node == @tail
+    end
+    " ( #{@tail.value} )"
   end
 end
