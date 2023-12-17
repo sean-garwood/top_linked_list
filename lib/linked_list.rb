@@ -1,45 +1,28 @@
 # frozen_string_literal: true
 
+require_relative 'node'
+
 # Ruby impl of a linked list.
 class LinkedList
-  include Transformations
-  include MakeNode
-  include EraseNode
+attr_accessor :head, :tail
 
-  attr_accessor :head, :tail
+TRANSFORMATIONS = [[:pop, :remove_at], [:append, :prepend, :insert_at]]
+ADD_TO_LIST = TRANSFORMATIONS[1]
+REMOVE_FROM_LIST = TRANSFORMATIONS[0]
 
   def initialize
     @head = nil
     @tail = nil
   end
 
-  def size
-    # no cheating by using @nodes!
+  def make_node(value, type)
+    Node.new(value, transformation.call(type))
   end
 
-  def at(index)
-    # no cheating by using @nodes!
+  def transform(value, &type)
+    case
+    when type == :append
   end
 
-  def find(value)
-    # no cheating by using @nodes!
-    @nodes.select { |node| node.value == value }
-  end
 
-  def contains?(value)
-    # no cheating by using @nodes!
-    @nodes.include?(value)
-  end
-
-  def to_s
-    if size.zero?
-      return nil
-    elsif size == 1
-      return "( #{@nodes[0].value} )"
-    else
-      @nodes.each { |node| "( #{node.value} ) -> " unless node == @tail }
-    end
-
-    " #{@tail.value}"
-  end
-end
+transformation = proc { |type, subtype| TRANSFORMATIONS[type][subtype] }

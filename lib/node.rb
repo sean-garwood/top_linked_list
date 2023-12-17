@@ -4,8 +4,8 @@
 class Node
   attr_accessor :value, :next_node
 
-  def initialize(value = nil, next_node = nil)
+  def initialize(value = nil, &next_node)
     @value = value
-    @next_node = next_node
+    block_given? && @next_node = next_node.call || @next_node = nil
   end
 end
