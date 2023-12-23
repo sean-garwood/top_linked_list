@@ -99,6 +99,15 @@ class LinkedList
       print_linked_node.call(current_node.value)
       current_node = current_node.next_node
     end
-    "( #{@tail.value} )"
+    "( #{@tail.value} ) -> nil"
+  end
+
+  # extra credit
+  def insert_at(value, index)
+    # somethin
+  end
+
+  def remove_at(index)
+    # s
   end
 end
