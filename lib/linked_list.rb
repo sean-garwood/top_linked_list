@@ -43,22 +43,26 @@ class LinkedList
     current_node
   end
 
+  def reset_head_during_pop
+    @size.zero? && nil || @size == 1 && @head = nil || @head.next_node = nil
+  end
+
+  def reset_tail_during_pop
+    if size < 3
+      @size.zero? && nil || @size == 1 && @tail = nil ||
+                            @size == 2 && @head = @tail
+    end
+    @tail = at(size - 2)
+    @tail.next_node = nil
+  end
+
   def pop
     return if @size.zero?
 
     popped = @tail
     popped.freeze
-    if @size == 1
-      @head = nil
-      @tail = nil
-    elsif size == 2
-      @head.next_node = nil
-      @tail = nil
-    else # if size is greater than two
-      # set the @tail to be the second-to-last node
-      @tail = at(size - 2)
-      @tail.next_node = nil
-    end
+    reset_head_during_pop
+    reset_tail_during_pop
     @size -= 1
     popped
   end
