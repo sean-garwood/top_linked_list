@@ -80,14 +80,26 @@ class LinkedList
   end
 
   def to_s
-    linked_node = proc { |value| "( #{value} ) -> "}
+    print_linked_node = ->(value) { "( #{value} ) -> " }
     current_node = @head
     return '' if current_node.nil?
 
     while current_node != @tail
-      linked_node.call(current_node.value)
+      # would be cleaner to refactor this call to print / lambda outside in its
+      # own method
+      print print_linked_node.call(current_node.value)
       current_node = current_node.next_node
     end
     " ( #{@tail.value} )"
   end
 end
+
+def debug()
+  ll = LinkedList.new
+  ll.append('finish top')
+  ll.append('study fn/oop paradigms')
+  ll.append('study haskell and golang')
+  puts ll
+end
+
+debug
