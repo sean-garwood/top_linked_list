@@ -36,6 +36,8 @@ class LinkedList
   def at(index)
     # index is the depth of the search for the node to return.
     # start with the @head and store it into `current_node`
+    return 'out of range' if index > size - 1
+
     current_node = @head
     index.times { current_node = current_node.next_node }
     current_node
@@ -44,6 +46,8 @@ class LinkedList
   def pop
     return if @size.zero?
 
+    popped = @tail
+    popped.freeze
     if @size == 1
       @head = nil
       @tail = nil
@@ -56,6 +60,7 @@ class LinkedList
       @tail.next_node = nil
     end
     @size -= 1
+    popped
   end
 
   def collect_nodes
@@ -90,7 +95,7 @@ class LinkedList
       print print_linked_node.call(current_node.value)
       current_node = current_node.next_node
     end
-    " ( #{@tail.value} )"
+    "( #{@tail.value} )"
   end
 end
 
@@ -99,6 +104,7 @@ def debug()
   ll.append('finish top')
   ll.append('study fn/oop paradigms')
   ll.append('study haskell and golang')
+  ll.pop
   puts ll
 end
 
