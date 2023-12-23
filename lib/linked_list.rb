@@ -30,7 +30,7 @@ class LinkedList
     node.next_node = @head unless @head.nil?
     @head = node
     @size += 1
-    size == 1 & @tail = @head
+    size == 1 && @tail = @head
   end
 
   def at(index)
@@ -103,12 +103,17 @@ class LinkedList
   end
 end
 
-def debug()
+def debug
   ll = LinkedList.new
   ll.append('finish top')
   ll.append('study fn/oop paradigms')
   ll.append('study haskell and golang')
-  ll.pop
+  new_priority = ll.pop.value
+  ll.prepend(new_priority)
+  puts ll.contains?('finish top')
+  puts ll.at(0)
+  puts ll.at(2)
+  puts ll.find('finish top')
   puts ll
 end
 
