@@ -89,32 +89,16 @@ class LinkedList
   end
 
   def to_s
-    print_linked_node = ->(value) { "( #{value} ) -> " }
+    print_linked_node = ->(value) { print "( #{value} ) -> " }
     current_node = @head
     return '' if current_node.nil?
 
     while current_node != @tail
       # would be cleaner to refactor this call to print / lambda outside in its
       # own method
-      print print_linked_node.call(current_node.value)
+      print_linked_node.call(current_node.value)
       current_node = current_node.next_node
     end
     "( #{@tail.value} )"
   end
 end
-
-def debug
-  ll = LinkedList.new
-  ll.append('finish top')
-  ll.append('study fn/oop paradigms')
-  ll.append('study haskell and golang')
-  new_priority = ll.pop.value
-  ll.prepend(new_priority)
-  puts ll.contains?('finish top')
-  puts ll.at(0)
-  puts ll.at(2)
-  puts ll.find('finish top')
-  puts ll
-end
-
-debug
