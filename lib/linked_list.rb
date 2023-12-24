@@ -34,10 +34,6 @@ class LinkedList
   end
 
   def at(index)
-    # index is the depth of the search for the node to return.
-    # start with the @head and store it into `current_node`
-    return 'out of range' if index > size - 1
-
     current_node = @head
     index.times { current_node = current_node.next_node }
     current_node
@@ -103,11 +99,27 @@ class LinkedList
   end
 
   # extra credit
+  def split_nodes
+    nodes = collect_nodes
+    first_half = nodes[0..index - 1]
+    second_half = nodes[index..]
+    [first_half, second_half]
+  end
+
+  def back_to_list(node_collection)
+    ll = LinkedList.new
+    node_collection.each { |node| ll.append(node.value) }
+  end
+
   def insert_at(value, index)
-    # somethin
+    node = Node.new(value)
+    split_nodes
+    back_to_list(nodes)
   end
 
   def remove_at(index)
-    # s
+    nodes = collect_nodes
+    nodes = first_half.concat(second_half)
+    back_to_list(nodes)
   end
 end
